@@ -13,17 +13,30 @@ class ViewController1: UITableViewController {
     // UDを使用するための宣言
     let defaults = UserDefaults.standard
     
-    var itemArray = [String]()
+    var item = Item()
+    
+    var itemArray = [Item]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        itemArray = ["ご飯を食べる", "朝早く起きる", "夜は早く寝る！", "aaa", "bbb", "ccc", "ddd", "aaa", "bbb", "ccc", "ddd", "aaa", "bbb", "ccc", "ddd", "aaa", "bbb", "ccc", "ddd", "aaa", "bbb", "ccc", "ddd", "aaa", "bbb", "ccc", "ddd", "aaa", "bbb", "ccc", "ddd", "aaa", "bbb", "ccc", "ddd", "aaa", "bbb", "ccc", "ddd"]
+        // 初期値の設定
+        var item1 = Item()
+        item1.content = "ご飯を食べる"
+        itemArray.append(item1)
         
-        // itemArrayをUD内のデータから取得
-        if let items = defaults.object(forKey: "test") as? [String] {
-            itemArray = items
-        }
+        var item2 = Item()
+        item2.content = "朝早く起きる"
+        itemArray.append(item2)
+        
+        var item3 = Item()
+        item3.content = "夜は早く寝る！"
+        itemArray.append(item3)
+        
+//        // itemArrayをUD内のデータから取得
+//        if let items = defaults.object(forKey: "test") as? [String] {
+//            itemArray = items
+//        }
         
     }
     
@@ -45,7 +58,11 @@ class ViewController1: UITableViewController {
         // アクションの宣言
         let action = UIAlertAction(title: "追加", style: .default) { (action) in
             
-            self.itemArray.append(textField.text ?? "項目は追加されませんでした")
+            var newItem = Item()
+            newItem.content = textField.text ?? "項目は追加されませんでした"
+            newItem.checked = false // デフォルト
+            
+            self.itemArray.append(newItem)
             
             // UD内に配列を保存９
             self.defaults.set(self.itemArray, forKey: "test")
@@ -79,8 +96,20 @@ class ViewController1: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
-        cell.textLabel?.text = itemArray[indexPath.row]
-
+        cell.textLabel?.text = itemArray[indexPath.row].content
+        
+        let itemy = itemArray[indexPath.row]
+        
+        // itemのcheckedの真偽によってチェックマークを着け外す
+//        if item.checked == true {
+//            cell.accessoryType = .checkmark
+//        } else {
+//            cell.accessoryType = .none
+//        }
+        // 上記をリファクタリング
+        
+        cell.accessoryType = itemy.checked ? .checkmark : .none
+        
         return cell
     }
     
@@ -89,17 +118,19 @@ class ViewController1: UITableViewController {
         // タップしたセルを非選択に戻す
         tableView.deselectRow(at: indexPath, animated: true)
         
-        // タップしたセルのチェックを付けたり外したりする
-        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
-            tableView.cellForRow(at: indexPath)?.accessoryType = .none
-        } else {
-            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-        }
-        // なぜかリファクタリングできない↑...
+//        // タップしたセルのチェックを付けたり外したりする
+//        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
+//            tableView.cellForRow(at: indexPath)?.accessoryType = .none
+//        } else {
+//            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+//        }
+//        // なぜかリファクタリングできない↑...
         
+        // itemのcheckedの真偽によってチェックマークを着け外す
+        itemArray[indexPath.row].checked = !itemArray[indexPath.row].checked
         
-    }
+        tableView.reloadData()
  
-
+    }
 
 }
