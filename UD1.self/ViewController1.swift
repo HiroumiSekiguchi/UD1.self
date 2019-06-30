@@ -41,6 +41,24 @@ class ViewController1: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // タップしたセルを非選択に戻す
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        // タップしたセルのチェックを付けたり外したりする
+        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
+            tableView.cellForRow(at: indexPath)?.accessoryType = .none
+        } else {
+            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+        }
+        // なぜかリファクタリングできない↑...
+        
+        // 忘れずリロード！
+//        tableView.reloadData()
+        
+        
+    }
  
 
 
