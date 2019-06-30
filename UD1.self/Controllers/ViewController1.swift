@@ -10,14 +10,20 @@ import UIKit
 
 class ViewController1: UITableViewController {
     
+    // UDを使用するための宣言
+    let defaults = UserDefaults.standard
+    
     var itemArray = ["ご飯を食べる", "朝早く起きる", "夜は早く寝る！"]
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // itemArrayをUD内のデータから取得
+        if let items = defaults.object(forKey: "itemArray") as? [String] {
+            itemArray = items
+        }
         
     }
-
     
     
     // ☆☆☆以下、追加ボタン（基礎文法）☆☆☆ //
@@ -37,7 +43,11 @@ class ViewController1: UITableViewController {
         
         // アクションの宣言
         let action = UIAlertAction(title: "追加", style: .default) { (action) in
+            
             self.itemArray.append(textField.text ?? "項目は追加されませんでした")
+            
+            // UD内に配列を保存
+            self.defaults.set(self.itemArray, forKey: "itemArray")
             
             // テーブルビューのリロード
             self.tableView.reloadData()
@@ -85,9 +95,6 @@ class ViewController1: UITableViewController {
             tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
         }
         // なぜかリファクタリングできない↑...
-        
-        // 忘れずリロード！
-//        tableView.reloadData()
         
         
     }
