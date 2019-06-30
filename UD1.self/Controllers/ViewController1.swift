@@ -13,13 +13,15 @@ class ViewController1: UITableViewController {
     // UDを使用するための宣言
     let defaults = UserDefaults.standard
     
-    var itemArray = ["ご飯を食べる", "朝早く起きる", "夜は早く寝る！"]
+    var itemArray = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        itemArray = ["ご飯を食べる", "朝早く起きる", "夜は早く寝る！", "aaa", "bbb", "ccc", "ddd", "aaa", "bbb", "ccc", "ddd", "aaa", "bbb", "ccc", "ddd", "aaa", "bbb", "ccc", "ddd", "aaa", "bbb", "ccc", "ddd", "aaa", "bbb", "ccc", "ddd", "aaa", "bbb", "ccc", "ddd", "aaa", "bbb", "ccc", "ddd", "aaa", "bbb", "ccc", "ddd"]
+        
         // itemArrayをUD内のデータから取得
-        if let items = defaults.object(forKey: "itemArray") as? [String] {
+        if let items = defaults.object(forKey: "test") as? [String] {
             itemArray = items
         }
         
@@ -47,7 +49,7 @@ class ViewController1: UITableViewController {
             self.itemArray.append(textField.text ?? "項目は追加されませんでした")
             
             // UD内に配列を保存
-            self.defaults.set(self.itemArray, forKey: "itemArray")
+            self.defaults.set(self.itemArray, forKey: "test")
             
             // テーブルビューのリロード
             self.tableView.reloadData()
