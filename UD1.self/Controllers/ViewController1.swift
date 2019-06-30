@@ -20,6 +20,38 @@ class ViewController1: UITableViewController {
 
     
     
+    // ☆☆☆以下、追加ボタン（基礎文法）☆☆☆ //
+    @IBAction func addButton(_ sender: UIBarButtonItem) {
+        
+        // アラートの宣言
+        let alert = UIAlertController(title: "新規項目の追加", message: "", preferredStyle: .alert)
+        
+        // スコープ共通のTextField
+        var textField = UITextField()
+        
+        // アラートにTextFieldを追加
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "新規項目を追加して下さい"
+            textField = alertTextField
+        }
+        
+        // アクションの宣言
+        let action = UIAlertAction(title: "追加", style: .default) { (action) in
+            self.itemArray.append(textField.text ?? "項目は追加されませんでした")
+            
+            // テーブルビューのリロード
+            self.tableView.reloadData()
+            
+        }
+        
+        // alertにactionを追加
+        alert.addAction(action)
+        
+        // 表示
+        present(alert, animated: true, completion: nil)
+        
+    }
+    
     
     
     // ☆☆☆以下、TableViewの設定☆☆☆ //

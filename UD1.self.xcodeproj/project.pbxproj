@@ -55,13 +55,37 @@
 			isa = PBXGroup;
 			children = (
 				1E276E2622C89D72007EC232 /* AppDelegate.swift */,
-				1E276E3822C89FBF007EC232 /* ViewController1.swift */,
-				1E276E2A22C89D72007EC232 /* Main.storyboard */,
-				1E276E2D22C89D74007EC232 /* Assets.xcassets */,
+				1E699F4922C8B1F700A2CB2B /* Controllers */,
+				1E699F4822C8B1F000A2CB2B /* Views */,
+				1E699F4722C8B1CB00A2CB2B /* Supporting Files */,
 				1E276E2F22C89D74007EC232 /* LaunchScreen.storyboard */,
 				1E276E3222C89D74007EC232 /* Info.plist */,
 			);
 			path = UD1.self;
+			sourceTree = "<group>";
+		};
+		1E699F4722C8B1CB00A2CB2B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1E276E2D22C89D74007EC232 /* Assets.xcassets */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1E699F4822C8B1F000A2CB2B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1E276E2A22C89D72007EC232 /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1E699F4922C8B1F700A2CB2B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1E276E3822C89FBF007EC232 /* ViewController1.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
