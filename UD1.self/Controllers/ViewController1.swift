@@ -27,7 +27,6 @@ class ViewController1: UITableViewController {
         
     }
     
-    
     // ☆☆☆以下、追加ボタン（基礎文法）☆☆☆ //
     @IBAction func addButton(_ sender: UIBarButtonItem) {
         
@@ -48,7 +47,7 @@ class ViewController1: UITableViewController {
             
             self.itemArray.append(textField.text ?? "項目は追加されませんでした")
             
-            // UD内に配列を保存
+            // UD内に配列を保存９
             self.defaults.set(self.itemArray, forKey: "test")
             
             // テーブルビューのリロード
